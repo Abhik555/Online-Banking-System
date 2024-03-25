@@ -29,11 +29,11 @@
 
 <%
 
-if(request.getSession().getAttribute("username") != null && request.getSession().getAttribute("password") != null){
+//if(request.getSession().getAttribute("username") != null && request.getSession().getAttribute("password") != null){
 	
-	request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
+	//request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 	
-}
+//}
 
 %>
 
@@ -137,7 +137,7 @@ body {
 			<h2>Login</h2>
 			<form action="login" method="post">
 				<input type="text" name="accountid" class="login-input"
-					placeholder="Username" required> <input type="password"
+					placeholder="AccountID" required> <input type="password"
 					name="password" class="login-input" placeholder="Password" required>
 				<button type="submit" class="login-button">Login</button>
 			</form>
