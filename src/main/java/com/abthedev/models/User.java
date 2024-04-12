@@ -11,7 +11,8 @@ import com.abthedev.DatabaseUtils;
 public class User {
 
 	private String username;
-	private int AccountID, Balance;
+	private int AccountID;
+	private float Balance;
 	private String password;
 	private String fname, lname, email, location, phone;
 
@@ -36,7 +37,7 @@ public class User {
 
 	// Constructor for login
 	public User(int AccountID, String username, String password, String fname, String lname, String email, String phone,
-			String location, int Balance) {
+			String location, float Balance) {
 		this.AccountID = AccountID;
 		this.username = username;
 		this.password = encryptPassword(password);
@@ -114,7 +115,7 @@ public class User {
 			cu.setString(6, email);
 			cu.setString(7, phone);
 			cu.setString(8, location);
-			cu.setInt(9, Balance);
+			cu.setFloat(9, Balance);
 
 			cu.executeUpdate();
 
@@ -147,7 +148,30 @@ public class User {
 	}
 
 	public static User getUser(String AccountID) {
-		return new User(AccountID);
+		
+		try {
+			PreparedStatement s = conn.prepareStatement("select * from accounts where ACCOUNTID = ?" , java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY);
+			s.setString(1, AccountID);
+			ResultSet r = s.executeQuery();
+			r.first();
+			
+			String pass = deencryptPassword(r.getString(3));
+			
+			String uname = r.getString(2);
+			String fname = r.getString(4);
+			String lname = r.getString(5);
+			String email = r.getString(6);
+			String phone = r.getString(7);
+			String addr = r.getString(8);
+			int bal = r.getInt(9);
+
+			return new User(Integer.parseInt(AccountID), uname, pass, fname, lname, email, phone, addr, bal);
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public int credit(String Amount) {
@@ -218,14 +242,14 @@ public class User {
 	/**
 	 * @return the balance
 	 */
-	public int getBalance() {
+	public float getBalance() {
 		return Balance;
 	}
 
 	/**
 	 * @param balance the balance to set
 	 */
-	public void setBalance(int balance) {
+	public void setBalance(float balance) {
 		Balance = balance;
 	}
 

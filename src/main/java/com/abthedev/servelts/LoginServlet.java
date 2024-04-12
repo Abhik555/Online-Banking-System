@@ -3,6 +3,8 @@ package com.abthedev.servelts;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.abthedev.DatabaseUtils;
 import com.abthedev.models.User;
@@ -27,18 +29,24 @@ public class LoginServlet extends HttpServlet {
 		try {
 			
 			User u = User.login(accid, pass);
-			r.println(u.getUsername());
-			r.println(u.getFname());
-			r.println(u.getLname());
-			r.println(u.getEmail());
-			r.println(u.getLocation());
-			r.println(u.getPhone());
-			r.println(u.getBalance());
 			
-			u.credit("100");
-			r.println(u.getBalance());
-			u.debit("50");
-			r.println(u.getBalance());
+			if(u != null) {
+			HashMap<String, String> user = new HashMap<>();
+			user.put("AccountID", accid);
+			user.put("Password", pass);
+			
+			request.getSession().setAttribute("User-Data", user);
+			request.getSession().setAttribute("user", u);
+			request.getSession().setAttribute("loginerror", null);
+			response.sendRedirect("dashboard.jsp");
+			}else {
+				request.getSession().setAttribute("User-Data", null);
+				request.getSession().setAttribute("user", null);
+				request.getSession().setAttribute("loginerror", "true");
+				response.sendRedirect("loginpage.jsp");
+			}
+			
+			
 			
 		}catch(Exception e) {
 			

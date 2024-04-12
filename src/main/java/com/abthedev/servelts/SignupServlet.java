@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import com.abthedev.models.User;
 
@@ -40,9 +41,12 @@ public class SignupServlet extends HttpServlet {
 			User u = new User(username , password , fname , lname , email , phone , location , 0);
 			u.createUser();
 			
+			HashMap<String, String> user = new HashMap<>();
+			user.put("AccountID", String.valueOf(u.getAccountID()));
+			user.put("Password", User.encryptPassword(password));
+			
 			HttpSession s = request.getSession();
-			s.setAttribute("username", username);
-			s.setAttribute("password", User.encryptPassword(password));
+			s.setAttribute("User-Data" , user);
 			
 			request.setAttribute("status", 0);
 			request.setAttribute("message", "Login Successful");

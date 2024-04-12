@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <%
 
 if(request.getSession().getAttribute("user") == null || request.getSession().getAttribute("User-Data") == null){
@@ -16,59 +15,30 @@ if(request.getSession().getAttribute("user") == null || request.getSession().get
 
 %>
 
-
 <head>
   <title>J Bank - Net Banking Dashboard</title>
   <link rel="stylesheet" type="text/css" href="./css/dash.css" />
 </head>
 
-
-<%! User u ; %>
-<%
-	u = (User) request.getSession().getAttribute("user");
-%>
-
-
 <body>
+
   <header>
     <h1>J Bank</h1>
     <a href="logout" class="logout">Logout</a>
   </header>
+  
+  <div class="height:30px;"><p></p></div>
 
-  <div class="body-div">
-    <section>
-  <div class="main-container">
-    <div class="balance-div">
-    	<% if(u != null){ %>
-      <h1><%= u.getUsername() %></h1>
-      <% } else { %>
-      <h1>Account Name</h1>
-      <% } %>
-      <% if(u != null){ %>
-      <h2>Balance : Rs  <%= u.getBalance() %>  </h2>
-      <% } else { %>
-      <h2>Balance : Error Retrieving</h2>
-      <% } %>
-    </div>
-
-    <div class="spacer">
-
-    </div>
-
-    <div class="button-container-div">
-      <h2>Actions</h2>
-      <a href="transferpage.jsp" class="button">Transfer Funds</a>
-      <a href="transanctionpage.jsp" class="button">Detailed Transactions History</a>
-    </div>
-  </div>
-  </section>
-  <section class="tran-sec">
+<section class="tran-sec">
 
     <div class="tran-container">
       <h1>Transactions</h1>
+      <h2>Transaction ID | Sender | Receiver | Amount | Type | Timestamp</h2>
       <ul class="transaction-list">
       
+      <%! User u; %>
       <%
+    	u = (User) request.getSession().getAttribute("user");
       
       ArrayList<ArrayList<String>> tran = Transanction.getUserTransanctions(u);
       
@@ -78,12 +48,12 @@ if(request.getSession().getAttribute("user") == null || request.getSession().get
     	  out.println(" </span>");
     	  out.println("<div class=\"hp\"></div>");
       }else{
-    	  
+      
       for(ArrayList<String> n : tran){
     	  
     	  StringBuffer stb = new StringBuffer();
     	  
-    	  String type;
+ 		  String type;
     	  
     	  if(n.get(7).equalsIgnoreCase("credit")){
     		  type = "</span> <span class=\"credit\">";
@@ -91,7 +61,9 @@ if(request.getSession().getAttribute("user") == null || request.getSession().get
     		  type = "</span> <span class=\"debit\">";
     	  }
     	  
-    	  stb.append("<li><span class=\"sender\">")
+    	  stb.append("<li> <span class=\"transaction-id\">")
+    	  	 .append(n.get(0))
+    	  	 .append("</span><span class=\"sender\">")
     	  	 .append(n.get(2))
     	  	 .append("</span> to <span class=\"receiver\">")
     	  	 .append(n.get(4))
@@ -99,35 +71,29 @@ if(request.getSession().getAttribute("user") == null || request.getSession().get
     	  	 .append(n.get(5))
     	  	 .append(type)
     	  	 .append(n.get(7))
+    	  	 .append("</span> <span class=\"timestamp\">")
+    	  	 .append(n.get(6))
     	  	 .append("</span></li>");
     	  
     	  String output = stb.toString();
     	  
     	  out.println(output);
     	  
+      }      
       }
-      }
-      
-      
-       	//<li><span class="sender">Employer</span> to <span class="receiver">John Doe</span> | <span class="amount">Rs 500.00</span> <span class="credit">Credit</span></li>
-        //<li><span class="sender">Self</span> to <span class="receiver">Jane Smith</span> | <span class="amount">Rs 50.00</span> <span class="debit">Debit</span></li>
-        //<li><span class="sender">Self</span> to <span class="receiver">ATM</span> | <span class="amount">Rs 100.00</span> <span class="debit">Debit</span></li>
-        //<li><span class="sender">Self</span> to <span class="receiver">Alice Johnson</span> | <span class="amount">Rs 200.00</span> <span class="debit">Debit</span></li>
-        //<li><span class="sender">Self</span> to <span class="receiver">Bob Brown</span> | <span class="amount">Rs 75.00</span> <span class="debit">Debit</span></li>
-        
-      
-      
-      
       %>
       </ul>               
     </div>
+    
+    <div class="tranback">
+    <a href="dashboard.jsp" class="button">Back to Dashboard</a>
 
-  </section>
-  <div class="spacer-tall"></div>
   </div>
 
-  <footer>
+  </section>
+    <footer>
     <p>&copy; J Bank 2024</p>
   </footer>
+
 </body>
 </html>

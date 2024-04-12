@@ -28,13 +28,11 @@
 <html lang="en">
 
 <%
+if (request.getSession().getAttribute("user") != null && request.getSession().getAttribute("User-Data") != null) {
 
-//if(request.getSession().getAttribute("username") != null && request.getSession().getAttribute("password") != null){
-	
-	//request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
-	
-//}
+	request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
 
+}
 %>
 
 <head>
@@ -48,6 +46,17 @@ body {
 	padding: 0;
 	background-color: #f0f0f0;
 	text-align: center;
+}
+
+.error-message {
+	background-color: #f8d7da;
+	color: #721c24;
+	padding: 10px 15px;
+	border-radius: 5px;
+	margin: 20px auto;
+	width: 80%;
+	text-align: center;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .header {
@@ -131,6 +140,12 @@ body {
 		<h1>JBank</h1>
 		<a href="index.jsp" class="login-button">Home</a>
 	</header>
+
+<% if( request.getSession().getAttribute("loginerror") != null && request.getSession().getAttribute("loginerror").equals("true")) {  %>
+	<div class="error-message">
+		<strong>Error:</strong> Invalid Credentials.
+	</div>
+<% } %>
 
 	<div class="login-box">
 		<section class="login-form">
