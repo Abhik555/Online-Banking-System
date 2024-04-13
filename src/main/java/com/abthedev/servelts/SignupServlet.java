@@ -38,7 +38,7 @@ public class SignupServlet extends HttpServlet {
 			String location = request.getParameter("location");
 			
 			
-			User u = new User(username , password , fname , lname , email , phone , location , 100);
+			User u = new User(username , password , fname , lname , email , phone , location , 100.0f);
 			u.createUser();
 			
 			HttpSession s = request.getSession();

@@ -22,7 +22,7 @@ public class User {
 
 	// Constructor For Creating Account
 	public User(String username, String password, String fname, String lname, String email, String phone,
-			String location, int Balance) {
+			String location, float Balance) {
 		this.username = username;
 		this.password = encryptPassword(password);
 		this.fname = fname;
@@ -73,7 +73,7 @@ public class User {
 				String email = r.getString(6);
 				String phone = r.getString(7);
 				String addr = r.getString(8);
-				int bal = r.getInt(9);
+				float bal = r.getFloat(9);
 
 				return new User(Integer.parseInt(AccountID), uname, password, fname, lname, email, phone, addr, bal);
 
