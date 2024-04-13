@@ -73,6 +73,32 @@ header h1 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.sstate {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  width: 60%;
+  background-color: green;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fstate {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  width: 60%;
+  background-color: red;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 .button {
   display: inline-block;
   padding: 1rem 2rem;
@@ -127,6 +153,14 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.body-div-p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .tran-container {

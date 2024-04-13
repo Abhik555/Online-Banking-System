@@ -4,17 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>404 Not Found</title>
 </head>
-
-<%
-
-out.println(request.getSession().getAttribute("user") == null);
-
-%>
-
-
 <body>
-
+<h1 style="text-align: center; justify-content: center;">404 Not Found</h1>
 </body>
 </html>

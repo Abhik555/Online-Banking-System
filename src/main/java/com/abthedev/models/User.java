@@ -103,9 +103,13 @@ public class User {
 			Statement s = conn.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE,
 					java.sql.ResultSet.CONCUR_READ_ONLY);
 			ResultSet rd = s.executeQuery(accq);
+			if(!rd.isBeforeFirst()) {
+				this.AccountID = 0;
+			}else {
 			rd.last();
 			this.AccountID = rd.getInt(1) + 1;
-
+			}
+			
 			PreparedStatement cu = conn.prepareStatement("INSERT INTO ACCOUNTS VALUES(? , ? , ? , ? ,? ,?,?,?,?)");
 			cu.setInt(1, this.AccountID);
 			cu.setString(2, username);
@@ -183,7 +187,7 @@ public class User {
 			s.setString(2, String.valueOf(this.AccountID));
 			s.execute();
 			
-			this.Balance = this.Balance + Integer.parseInt(Amount);
+			this.Balance = this.Balance + Float.parseFloat(Amount);
 
 			return 0;
 		} catch (SQLException e) {
@@ -201,7 +205,7 @@ public class User {
 			s.setString(2, String.valueOf(this.AccountID));
 			s.execute();
 			
-			this.Balance = this.Balance - Integer.parseInt(Amount);
+			this.Balance = this.Balance - Float.parseFloat(Amount);
 
 			return 0;
 		} catch (SQLException e) {

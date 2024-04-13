@@ -38,30 +38,30 @@ public class SignupServlet extends HttpServlet {
 			String location = request.getParameter("location");
 			
 			
-			User u = new User(username , password , fname , lname , email , phone , location , 0);
+			User u = new User(username , password , fname , lname , email , phone , location , 100);
 			u.createUser();
 			
-			HashMap<String, String> user = new HashMap<>();
-			user.put("AccountID", String.valueOf(u.getAccountID()));
-			user.put("Password", User.encryptPassword(password));
-			
 			HttpSession s = request.getSession();
-			s.setAttribute("User-Data" , user);
+			s.setAttribute("user", u);
 			
 			request.setAttribute("status", 0);
 			request.setAttribute("message", "Login Successful");
 			
-			request.getRequestDispatcher("/confirmpage.jsp").forward(request, response);
-			
+			request.getSession().setAttribute("status", "sstate");
+			request.getSession().setAttribute("st", "Created Account Successfully");
+			request.getSession().setAttribute("sm", "Your Account Number is: "+u.getAccountID());
+			request.getSession().setAttribute("loc", "dashboard.jsp");
+			response.sendRedirect("statuspage.jsp");
 			
 			
 		}catch(Exception e) {
 			
-			request.setAttribute("status", 1);
-			request.setAttribute("message", "Invalid Login Details Pls Check");
-			request.getRequestDispatcher("/confirmpage.jsp").forward(request, response);
+			request.getSession().setAttribute("status", "fstate");
+			request.getSession().setAttribute("st", "Account Creation Failed");
+			request.getSession().setAttribute("sm", "Contact Admin for assistance click the button below to return to homepage");
+			request.getSession().setAttribute("loc", "index.jsp");
+			response.sendRedirect("statuspage.jsp");
 			
-			r.println(e.getStackTrace());
 		}
 		
 	}

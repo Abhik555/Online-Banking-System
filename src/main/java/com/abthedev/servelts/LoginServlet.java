@@ -31,16 +31,11 @@ public class LoginServlet extends HttpServlet {
 			User u = User.login(accid, pass);
 			
 			if(u != null) {
-			HashMap<String, String> user = new HashMap<>();
-			user.put("AccountID", accid);
-			user.put("Password", pass);
 			
-			request.getSession().setAttribute("User-Data", user);
 			request.getSession().setAttribute("user", u);
 			request.getSession().setAttribute("loginerror", null);
 			response.sendRedirect("dashboard.jsp");
 			}else {
-				request.getSession().setAttribute("User-Data", null);
 				request.getSession().setAttribute("user", null);
 				request.getSession().setAttribute("loginerror", "true");
 				response.sendRedirect("loginpage.jsp");

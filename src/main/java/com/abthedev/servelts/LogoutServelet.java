@@ -17,9 +17,18 @@ public class LogoutServelet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			request.getSession().removeAttribute("user");
-			response.sendRedirect("index.jsp");
-		}catch(Exception e) {
+			request.getSession().setAttribute("status", "sstate");
+			request.getSession().setAttribute("st", "Logout Successful");
+			request.getSession().setAttribute("sm", "Click the button below to return to home page");
+			request.getSession().setAttribute("loc", "index.jsp");
+			response.sendRedirect("statuspage.jsp");
 			
+		}catch(Exception e) {
+			request.getSession().setAttribute("status", "fstate");
+			request.getSession().setAttribute("st", "Logout Failed");
+			request.getSession().setAttribute("sm", "Click the button below to return to dashboard");
+			request.getSession().setAttribute("loc", "dashboard.jsp");
+			response.sendRedirect("statuspage.jsp");
 		}
 	}
 

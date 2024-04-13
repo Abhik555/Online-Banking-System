@@ -39,4 +39,11 @@
     <servlet-name>TransferServlet</servlet-name>
     <url-pattern>/TransferServlet</url-pattern>
   </servlet-mapping>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404.jsp</location>
+  </error-page>
+  <listener>
+    <listener-class>com.abthedev.StartupListener</listener-class>
+  </listener>
 </web-app>

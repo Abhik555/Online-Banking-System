@@ -36,16 +36,25 @@ public class TransferServlet extends HttpServlet {
 			u.debit(amount);
 			r.credit(amount);
 			
-			Transanction d = new Transanction(u, r, Float.parseFloat(amount), "Debit");
-			Transanction c = new Transanction(r, u, Float.parseFloat(amount), "Credit");
+			Transanction d = new Transanction(u, r, Float.parseFloat(amount+"f"), "Debit");
+			Transanction c = new Transanction(r, u, Float.parseFloat(amount+"f"), "Credit");
 			
 			d.doTransanction();
 			c.doTransanction();
 			
+			request.getSession().setAttribute("status", "sstate");
+			request.getSession().setAttribute("st", "Transfer Successful");
+			request.getSession().setAttribute("sm", "Click the button below to return to dashboard");
+			request.getSession().setAttribute("loc", "dashboard.jsp");
+			response.sendRedirect("statuspage.jsp");
 			
 		}catch(Exception e) {
 			
-			System.out.println(e.getMessage());
+			request.getSession().setAttribute("status", "fstate");
+			request.getSession().setAttribute("st", "Transfer Failed");
+			request.getSession().setAttribute("sm", "Contact Admin for any balance related issues click the button below to return to dashboard");
+			request.getSession().setAttribute("loc", "dashboard.jsp");
+			response.sendRedirect("statuspage.jsp");
 			
 		}
 		

@@ -10,7 +10,7 @@
 
 <%
 
-if(request.getSession().getAttribute("user") == null || request.getSession().getAttribute("User-Data") == null){
+if(request.getSession().getAttribute("user") == null){
 	response.sendRedirect("loginpage.jsp");
 }
 
@@ -107,17 +107,6 @@ if(request.getSession().getAttribute("user") == null || request.getSession().get
     	  
       }
       }
-      
-      
-       	//<li><span class="sender">Employer</span> to <span class="receiver">John Doe</span> | <span class="amount">Rs 500.00</span> <span class="credit">Credit</span></li>
-        //<li><span class="sender">Self</span> to <span class="receiver">Jane Smith</span> | <span class="amount">Rs 50.00</span> <span class="debit">Debit</span></li>
-        //<li><span class="sender">Self</span> to <span class="receiver">ATM</span> | <span class="amount">Rs 100.00</span> <span class="debit">Debit</span></li>
-        //<li><span class="sender">Self</span> to <span class="receiver">Alice Johnson</span> | <span class="amount">Rs 200.00</span> <span class="debit">Debit</span></li>
-        //<li><span class="sender">Self</span> to <span class="receiver">Bob Brown</span> | <span class="amount">Rs 75.00</span> <span class="debit">Debit</span></li>
-        
-      
-      
-      
       %>
       </ul>               
     </div>
