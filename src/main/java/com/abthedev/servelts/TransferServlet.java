@@ -23,6 +23,7 @@ public class TransferServlet extends HttpServlet {
 		
 		if(request.getSession().getAttribute("user") == null) {
 			response.sendRedirect("loginpage.jsp");
+			return;
 		}
 		
 		User u =  (User)  request.getSession().getAttribute("user");

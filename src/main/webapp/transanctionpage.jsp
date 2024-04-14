@@ -9,7 +9,7 @@
 
 <%
 
-if(request.getSession().getAttribute("user") == null || request.getSession().getAttribute("User-Data") == null){
+if(request.getSession().getAttribute("user") == null){
 	response.sendRedirect("loginpage.jsp");
 }
 
@@ -57,23 +57,36 @@ if(request.getSession().getAttribute("user") == null || request.getSession().get
     	  
     	  if(n.get(7).equalsIgnoreCase("credit")){
     		  type = "</span> <span class=\"credit\">";
+    		  stb.append("<li> <span class=\"transaction-id\">")
+     	  	 .append(n.get(0))
+     	  	 .append("</span><span class=\"sender\">")
+     	  	 .append(n.get(4))
+     	  	 .append("</span> to <span class=\"receiver\">")
+     	  	 .append(n.get(2))
+     	  	 .append("</span> | <span class=\"amount\">Rs ")
+     	  	 .append(n.get(5))
+     	  	 .append(type)
+     	  	 .append(n.get(7))
+     	  	 .append("</span> <span class=\"timestamp\">")
+     	  	 .append(n.get(6))
+     	  	 .append("</span></li>");
     	  }else{
     		  type = "</span> <span class=\"debit\">";
+    		  stb.append("<li> <span class=\"transaction-id\">")
+     	  	 .append(n.get(0))
+     	  	 .append("</span><span class=\"sender\">")
+     	  	 .append(n.get(2))
+     	  	 .append("</span> to <span class=\"receiver\">")
+     	  	 .append(n.get(4))
+     	  	 .append("</span> | <span class=\"amount\">Rs ")
+     	  	 .append(n.get(5))
+     	  	 .append(type)
+     	  	 .append(n.get(7))
+     	  	 .append("</span> <span class=\"timestamp\">")
+     	  	 .append(n.get(6))
+     	  	 .append("</span></li>");
     	  }
     	  
-    	  stb.append("<li> <span class=\"transaction-id\">")
-    	  	 .append(n.get(0))
-    	  	 .append("</span><span class=\"sender\">")
-    	  	 .append(n.get(2))
-    	  	 .append("</span> to <span class=\"receiver\">")
-    	  	 .append(n.get(4))
-    	  	 .append("</span> | <span class=\"amount\">Rs ")
-    	  	 .append(n.get(5))
-    	  	 .append(type)
-    	  	 .append(n.get(7))
-    	  	 .append("</span> <span class=\"timestamp\">")
-    	  	 .append(n.get(6))
-    	  	 .append("</span></li>");
     	  
     	  String output = stb.toString();
     	  
