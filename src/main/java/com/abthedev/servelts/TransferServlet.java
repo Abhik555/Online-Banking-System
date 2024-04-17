@@ -34,6 +34,14 @@ public class TransferServlet extends HttpServlet {
 		try {
 			User r = User.getUser(AC);
 			
+			if(r == null) {
+				request.getSession().setAttribute("status", "fstate");
+				request.getSession().setAttribute("st", "Transfer Failed");
+				request.getSession().setAttribute("sm", "Contact Admin for any balance related issues click the button below to return to dashboard");
+				request.getSession().setAttribute("loc", "dashboard.jsp");
+				response.sendRedirect("statuspage.jsp");
+			}else {
+			
 			u.debit(amount);
 			r.credit(amount);
 			
@@ -48,6 +56,7 @@ public class TransferServlet extends HttpServlet {
 			request.getSession().setAttribute("sm", "Click the button below to return to dashboard");
 			request.getSession().setAttribute("loc", "dashboard.jsp");
 			response.sendRedirect("statuspage.jsp");
+			}
 			
 		}catch(Exception e) {
 			

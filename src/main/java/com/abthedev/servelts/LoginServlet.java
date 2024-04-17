@@ -45,20 +45,10 @@ public class LoginServlet extends HttpServlet {
 			
 			
 		}catch(Exception e) {
-			
+			request.getSession().setAttribute("user", null);
+			request.getSession().setAttribute("loginerror", "true");
+			response.sendRedirect("loginpage.jsp");
 		}
-//		
-//		String url = "jdbc:mysql://localhost:3306/jbank";
-//		String username = "root";
-//		String password = "abhik";
-//		
-//		
-//		try {
-//			Connection conn = DriverManager.getConnection(url, username, password);
-//			r.println(conn.getTypeMap());
-//		}catch(Exception e) {
-//			r.println(e.getMessage());
-//		}
 		
 	}
 

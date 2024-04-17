@@ -89,13 +89,21 @@ body {
 	align-items: center;
 	text-align: center;
 }
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  padding: 1rem;
+  background-color: white;
+}
+
 </style>
 </head>
 <body>
 	<header class="header">
 		<div>https://www.jbank.com</div>
 		<h1>J Bank</h1>
-		<a href="login.html" class="login-button">Login</a>
+		<a href="loginpage.jsp" class="login-button">Login</a>
 	</header>
 
 	<div class="container-div">
@@ -118,5 +126,9 @@ body {
 			</form>
 		</section>
 	</div>
+	
+	<footer>
+        <p>&copy; J Bank 2024</p>
+    </footer>
 </body>
 </html>

@@ -145,6 +145,9 @@ body {
 	<div class="error-message">
 		<strong>Error:</strong> Invalid Credentials.
 	</div>
+	<% 
+	request.getSession().setAttribute("loginerror", "false");
+	%>
 <% } %>
 
 	<div class="login-box">

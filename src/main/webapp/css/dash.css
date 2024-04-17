@@ -83,7 +83,7 @@ header h1 {
   width: 60%;
   background-color: green;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .fstate {
@@ -96,7 +96,7 @@ header h1 {
   width: 60%;
   background-color: red;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .button {
@@ -252,4 +252,17 @@ footer {
 
 .tranback .button {
   background-color: #28a745;
+}
+
+.statdiv{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  width: 60%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }

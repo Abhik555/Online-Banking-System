@@ -27,7 +27,7 @@ if(request.getSession().getAttribute("status") ==null || request.getSession().ge
     <section style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 20px;">
     <div class="button-container-div">
     
-    <div class=<%= request.getSession().getAttribute("status") %>>
+    <div class="statdiv">
     
     <h1><%= request.getSession().getAttribute("st") %></h1>
     <p> <%= request.getSession().getAttribute("sm") %> </p>    
